@@ -1,0 +1,51 @@
+<div>
+  <div id="{{ include.id | slugify }}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+      {% for item in include.images %}
+      <button type="button"
+              data-bs-target="#{{ include.id | slugify }}"
+              data-bs-slide-to="{{ forloop.index0 }}"
+              {% if forloop.index == 1 %}class="active" aria-current="true"{% endif %}
+              aria-label="Slide {{ forloop.index }}"></button>
+      {% endfor %}
+    </div>
+
+    <div class="carousel-inner">
+      {% for item in include.images %}
+      <div class="carousel-item {% if forloop.index == 1 %}active{% endif %}">
+        {% if item.link %}<a href="{{ item.link }}" target="_blank">{% endif %}
+
+        <img class="d-block w-100 carousel-image rounded-xl"
+             loading="lazy"
+             src="{{ item.src | relative_url }}"
+             alt="{{ item.title }}">
+
+        {% if item.title or item.desc %}
+        <div class="carousel-caption d-none d-md-block">
+          {% if item.title %}<h5>{{ item.title }}</h5>{% endif %}
+          {% if item.desc %}<p>{{ item.desc }}</p>{% endif %}
+        </div>
+        {% endif %}
+
+        {% if item.link %}</a>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <button class="carousel-control-prev" type="button"
+            data-bs-target="#{{ include.id | slugify }}"
+            data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button"
+            data-bs-target="#{{ include.id | slugify }}"
+            data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-sm fixed-top mb-5 shadow-sm">
+    <div class="{% if page.container_class %}{{ page.container_class }}{% else %}container-lg{% endif %}">
+        <a class="navbar-brand" href="{{ '/' | relative_url }}">
+            <strong>{{site.data.profile.navbar_name}}</strong>
+        </a>
+        <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                {% for item in site.data.navigation.pages %}
+                <li class="nav-item">
+                  <a class="nav-link {% if item.name == page.navbar_title %}active{% endif %}"
+                     {% if item.name == page.navbar_title %}aria-current="page"{% endif %}
+                     href="{{ item.url | relative_url }}">{{ item.name }}</a>
+                </li>
+                {% endfor %}
+                <li class="nav-item">
+                  <button id="theme-toggle" type="button" class="btn btn-sm">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                  </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
