@@ -141,6 +141,9 @@ $(function () {
         },
         afterLoad: function(element) {
             element.addClass('lazy-loaded');
+            if (!element.hasClass('cover-mobile-bg')) {
+                element.css('background-image', 'none');
+            }
             const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
             swapDarkImages(currentTheme, element);
             $grid.masonry('layout');

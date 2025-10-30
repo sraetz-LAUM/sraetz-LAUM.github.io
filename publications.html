@@ -62,11 +62,12 @@ body_attr: >-
 
 {% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
 <div class="row custom-spacing">
-    <div class="col-12 col-lg-10">
-        <div>
-            <input type="text" id="publication-search" placeholder="Search by keywords in publications..." class="form-control searchbar mb-3">
-        </div>
+    <div class="col-12 col-lg-10 custom-spacing-col">
+        <input type="text" id="publication-search" placeholder="Search by keywords in publications..." class="form-control searchbar mb-3">
     </div>
+
+    <!-- keep the same column structure as below -->
+    <div class="col-2 d-none d-lg-block mt-4"></div>
 </div>
 
 <div class="row">

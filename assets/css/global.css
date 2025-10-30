@@ -207,8 +207,35 @@ a:hover, .nav-link:hover, .author-link:hover, .citation-badge:hover {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+/* Default (desktop) */
 .custom-spacing {
-  margin: 2rem 15rem 0.5rem; /* top, sides, bottom */
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.custom-spacing-col {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 992px) {
+    .custom-spacing-col {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+/* Small screens (phones) */
+@media (max-width: 576px) {
+    .custom-spacing {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .custom-spacing-col {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
 /* Match the placeholder color to the text color */
@@ -434,10 +461,28 @@ img.lazy:not(.lazy-loaded) {
 }
 
 /* Defensive reset: make sure no loaded element stays hidden */
-img.lazy-loaded,
-div.lazy-loaded {
+/*img.lazy-loaded,*/
+/*div.lazy-loaded {*/
+/*  display: block !important;*/
+/*  background-image: none !important;*/
+/*}*/
+/* Remove loading.gif background after load, but keep actual background images for cover-mobile-bg */
+img.lazy-loaded {
   display: block !important;
   background-image: none !important;
+}
+
+div.lazy-loaded:not(.cover-mobile-bg) {
+  display: block !important;
+  background-image: none !important;
+}
+
+/* Ensure cover-mobile-bg keeps its image visible */
+.cover-mobile-bg.lazy-loaded {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block !important;
 }
 
 /* ======================
