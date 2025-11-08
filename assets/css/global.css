@@ -537,7 +537,7 @@ div.lazy-loaded:not(.cover-mobile-bg) {
     border-radius: 4px;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
     .img-news{
         max-width: 100%;
         height: auto;
