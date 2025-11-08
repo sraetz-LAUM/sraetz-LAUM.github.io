@@ -128,6 +128,22 @@ h1, h2, h3, h4, h5, h6,
     opacity: 0.75;
 }
 
+/* Style the navbar toggle button in both themes */
+.navbar-toggler {
+  color: var(--text-color-navbar) !important;
+  border-color: var(--text-color-navbar) !important;
+}
+
+/* The <i> icon inside the button */
+.navbar-toggler .fa-bars {
+  color: var(--text-color-navbar) !important;
+}
+
+/* Small screens (phones) */
+@media (max-width: 576px) {
+    .navbar { opacity: 1; }
+}
+
 /* ======================
    Logos
 ====================== */
@@ -496,7 +512,7 @@ div.lazy-loaded:not(.cover-mobile-bg) {
     --card-border: #dee2e6;
     --navbar-bg: #2d8efd;
     --border-color: #dee2e6;
-    --bg-translucent: rgba(255, 255, 255, 0.9);
+    --bg-translucent: rgba(255, 255, 255, 0.875);
     --link-color: #0d6efd;
     --footer-link: #0d4edd;
     --link-hover-color: #2d8efd;
@@ -514,7 +530,7 @@ div.lazy-loaded:not(.cover-mobile-bg) {
     --card-border: #333;
     --navbar-bg: #101e7d;
     --border-color: #444;
-    --bg-translucent: rgba(30, 30, 30, 0.95);
+    --bg-translucent: rgba(30, 30, 30, 0.9);
     --link-color: #2d8eff;
     --footer-link: #2d8eff;
     --link-hover-color: #4daeff;
