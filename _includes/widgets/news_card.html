@@ -1,21 +1,63 @@
 {% assign news_by_year = site.news | sort: "date" | reverse | slice: 0, include.limit | group_by_exp: "item", "item.date | date: '%Y'" -%}
 
-<div class="my-3 bg-white shadow-sm rounded-xl">
-    <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fa-solid fa-rss"></i> News</h6>
+<div class="my-3 theme-card shadow-sm rounded-xl">
+    <h6 class="p-3 mb-0 border-bottom border-secondary"><i class="fa-solid fa-rss"></i> News</h6>
     <div class="px-3 pb-1 small">
+
         {% for year in news_by_year %}
-        <div class="d-flex py-1 {% if not_first -%}border-top border-gray{%- endif %}">
-            {% assign not_first = true %}
-            <div class="me-3 text-muted my-1">{{ year.name }}</div>
-            <div class="flex-grow-1">
-                {% for item in year.items %}
-                <div class="my-1 d-flex">
-                    <div>{{ item.title }}</div>
-                    <div class="ms-auto mt-auto text-muted no-break"><i>{{ item.date | date: "%b %d" }}</i></div>
+        <div class="timeline-year my-3">
+          <div class="d-flex align-items-center mb-1">
+            <div class="timeline-year-label">{{ year.name }}</div>
+            <button class="btn btn-sm btn-outline-secondary ms-2 toggle-year" data-target="year-{{ year.name }}">
+              Show details
+            </button>
+          </div>
+
+          <div class="timeline-items">
+            {% for item in year.items %}
+            <div class="timeline-item">
+              <div class="timeline-line"></div>
+              <div class="timeline-content">
+
+                <!-- Row 1: title + date -->
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    {{ item.title }}
+                    {% if item.readmore_link %}
+                      <a href="{{ item.readmore_link }}" target="_blank">Read more <i class="fa-solid fa-angle-double-right"></i></a>
+                    {% endif %}
+                  </div>
+                  <div class="ms-4 no-break"><i>{{ item.date | date: "%b %d" }}</i></div>
                 </div>
-                {% endfor %}
+
+                <!-- Row 2: Images (hidden by default) -->
+                {% if item.extra_text %}
+                  <div class="year-{{ year.name }} d-none mt-3">
+                    {{ item.extra_text }}
+                  </div>
+                {% endif %}
+                {% if item.image %}
+                <div class="timeline-images year-{{ year.name }} d-none text-center mt-1 mx-2">
+                  <div class="news-images">
+                    {% for image in item.image %}
+                    <a href="{{ image | relative_url }}" target="_blank" rel="noopener">
+                      <img class="img-news lazy rounded-sm d-block mx-auto"
+                           data-src="{{ image | relative_url }}"
+                           data-light-src="{{ image | relative_url }}"
+                           data-dark-src="{{ image | relative_url }}"
+                           alt="{{ item.title }}">
+                    </a>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endif %}
+
+              </div>
             </div>
+            {% endfor %}
+          </div>
         </div>
         {% endfor %}
+
     </div>
 </div>

@@ -170,21 +170,22 @@ $(function () {
         const matchedIds = new Set();
 
         // --- 1. Check desktop cards ---
-        document.querySelectorAll(".publication-card.cover-desktop").forEach(card => {
+        document.querySelectorAll(".publication-card.cover-desktop, .cover-mobile-overlay").forEach(container => {
+            const card = container.closest(".publication-card");
             const pubId = card.getAttribute("data-pub-id");
-            const text = card.textContent.toLowerCase();
+            const text = container.textContent.toLowerCase();
             const matches = keywords.every(kw => text.includes(kw)); // all keywords must match
 
             if (matches || keywords.length === 0) matchedIds.add(pubId);
 
             // Reset previous highlights
-            card.querySelectorAll(".highlight").forEach(el => {
+            container.querySelectorAll(".highlight").forEach(el => {
                 el.outerHTML = el.textContent;
             });
 
             // Apply highlights
             if (matches && keywords.length > 0) {
-                highlightText(card, keywords);
+                highlightText(container, keywords);
             }
         });
 
@@ -302,6 +303,20 @@ $(function () {
           lastActive.classList.add("active");
         }
       }
+    });
+
+    // ------------------------------
+    // To show or not details
+    // in News
+    // ------------------------------
+    document.querySelectorAll(".toggle-year").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-target");
+        document.querySelectorAll("." + target).forEach(el => {
+          el.classList.toggle("d-none");
+        });
+        btn.textContent = btn.textContent.includes("Show") ? "Hide details" : "Show details";
+      });
     });
 
 });

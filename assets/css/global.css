@@ -501,6 +501,57 @@ div.lazy-loaded:not(.cover-mobile-bg) {
   display: block !important;
 }
 
+/*============
+    NEWS
+============*/
+/* Timeline layout */
+.timeline-year-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-items {
+  margin-left: 1.25rem;
+  border-left: 2px solid var(--link-color);
+  padding-left: 1rem;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.timeline-line {
+  position: absolute;
+  left: -1.45rem;   /* aligns with year border */
+  top: 0.4rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--link-color);
+  border-radius: 50%;
+}
+
+.img-news{
+    max-height: 250px;
+    width: auto;
+    border-radius: 4px;
+}
+
+@media (min-width: 576px) {
+    .img-news{
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+.news-images {
+  display: flex;
+  flex-wrap: wrap;      /* allows wrapping on small screens */
+  gap: 1rem;            /* spacing between images */
+  justify-content: center;
+}
+
 /* ======================
    Theme Variables
 ====================== */
